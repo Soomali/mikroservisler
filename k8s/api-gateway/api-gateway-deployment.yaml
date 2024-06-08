@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resturant-api-gateway-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resturant-api-gateway
+  template:
+    metadata:
+      labels:
+        app: resturant-api-gateway
+    spec:
+      containers:
+      - name: resturant-api-gateway
+        image: resturant-auth-service
+        imagePullPolicy: Never
+
+        ports:
+        - containerPort: 3000
+        env:
+        - name: AUTHORIZATION_MONGODB_URL
+          value: mongodb://mongodb-service:27017/authorization
