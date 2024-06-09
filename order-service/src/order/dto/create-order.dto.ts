@@ -1,9 +1,11 @@
+import { Type } from 'class-transformer';
 import 'class-validator';
 import { IsMongoId, IsNotEmpty, IsString, MinLength } from 'class-validator';
 import { ValidateIfNotNull } from 'src/util/validate-if-not-null.decorator';
+import { CreatePaymentDTO } from './create-payment.dto';
 export class CreateOrderDto {
   @IsMongoId()
-  user_id:string;
+  customer_id:string;
   @IsMongoId()
   restaurant_id: string;
   @IsMongoId()
@@ -11,8 +13,8 @@ export class CreateOrderDto {
   @IsNotEmpty()
   @MinLength(12)
   address:string;
-  @IsString()
-  payment_id:string;
+  @Type((_) => CreatePaymentDTO)
+  paymentDetails: CreatePaymentDTO;
   @IsString()
   @IsNotEmpty()
   restaurant_name:string;

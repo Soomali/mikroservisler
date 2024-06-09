@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: h2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: h2
+  template:
+    metadata:
+      labels:
+        app: h2
+    spec:
+      containers:
+        - name: h2
+          image: oscarfonts/h2:latest
+          ports:
+            - containerPort: 8082
+            - containerPort: 9092
+          volumeMounts:
+            - mountPath: /opt/h2-data
+              name: h2-storage
+      volumes:
+        - name: h2-storage
+          persistentVolumeClaim:
+            claimName: h2-pvc

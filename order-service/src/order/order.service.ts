@@ -5,11 +5,12 @@ import { UpdateOrderDto } from "./dto/update-order.dto";
 import { InjectModel } from "@nestjs/mongoose";
 import {Order, OrderStatus} from "./schema/order.schema";
 import { Model } from "mongoose";
+import { RDAService } from "src/rda/rda.service";
 
 @Injectable()
 export class OrderService {
 
-  constructor(@InjectModel(Order.name) private readonly orderModel: Model<Order>) { }
+  constructor(@InjectModel(Order.name) private readonly orderModel: Model<Order>,private readonly rdaService:RDAService) { }
 
   create(createOrderDto: CreateOrderDto) {
     return this.orderModel.create(createOrderDto);
