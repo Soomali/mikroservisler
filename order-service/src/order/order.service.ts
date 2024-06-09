@@ -1,5 +1,5 @@
 
-    import { Injectable } from "@nestjs/common";
+    import { BadRequestException, Injectable } from "@nestjs/common";
 import { CreateOrderDto } from "./dto/create-order.dto";
 import { UpdateOrderDto } from "./dto/update-order.dto";
 import { InjectModel } from "@nestjs/mongoose";
@@ -12,7 +12,11 @@ export class OrderService {
 
   constructor(@InjectModel(Order.name) private readonly orderModel: Model<Order>,private readonly rdaService:RDAService) { }
 
-  create(createOrderDto: CreateOrderDto) {
+  async create(createOrderDto: CreateOrderDto) {
+    const payment = await this.rdaService.createPayment(createOrderDto.paymentDetails);
+    if(!payment){
+      throw new BadRequestException();
+    }
     return this.orderModel.create(createOrderDto);
   }
 

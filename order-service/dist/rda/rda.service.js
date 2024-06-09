@@ -23,7 +23,7 @@ let RDAService = class RDAService {
         }
         const config = {
             method: 'POST',
-            url: `http://api-gateway-service:80/auth/verify-code`,
+            url: `http://payments-service:3000/payments/`,
             data
         };
         const response = this.httpService.request(config);

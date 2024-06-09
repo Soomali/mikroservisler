@@ -23,7 +23,11 @@ let OrderService = class OrderService {
         this.orderModel = orderModel;
         this.rdaService = rdaService;
     }
-    create(createOrderDto) {
+    async create(createOrderDto) {
+        const payment = await this.rdaService.createPayment(createOrderDto.paymentDetails);
+        if (!payment) {
+            throw new common_1.BadRequestException();
+        }
         return this.orderModel.create(createOrderDto);
     }
     findAll() {

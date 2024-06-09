@@ -17,7 +17,7 @@ export class RDAService {
     }
     const config: AxiosRequestConfig = {
       method: 'POST',
-      url: `http://api-gateway-service:80/auth/verify-code`,
+      url: `http://payments-service:3000/payments/create`,
       data
     };
     const response = this.httpService.request(config);
