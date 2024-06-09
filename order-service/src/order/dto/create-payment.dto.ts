@@ -1,6 +1,8 @@
 import { Type } from "class-transformer";
 import { IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { ValidateIfNotNull } from "src/util/validate-if-not-null.decorator";
+import { MoneyDTO } from "./money.dto";
+
 
 export class CreatePaymentDTO {
     @IsNumber()
@@ -32,13 +34,3 @@ money: MoneyDTO;
 }
 
 
-
-export class MoneyDTO {
-    @IsNumber()
-    id:number;
-    @IsString()
-    unit:string;
-    @IsNumber()
-    value:number;
-
-}

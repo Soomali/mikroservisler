@@ -12,6 +12,8 @@ const mongoose_1 = require("@nestjs/mongoose");
 const order_controller_1 = require("./order.controller");
 const order_service_1 = require("./order.service");
 const order_schema_1 = require("./schema/order.schema");
+const axios_1 = require("@nestjs/axios");
+const rda_service_1 = require("../rda/rda.service");
 let OrderModule = class OrderModule {
 };
 exports.OrderModule = OrderModule;
@@ -19,9 +21,10 @@ exports.OrderModule = OrderModule = __decorate([
     (0, common_1.Module)({
         controllers: [order_controller_1.OrderController],
         imports: [
+            axios_1.HttpModule,
             mongoose_1.MongooseModule.forFeature([{ name: order_schema_1.Order.name, schema: order_schema_1.OrderSchema }])
         ],
-        providers: [order_service_1.OrderService],
+        providers: [order_service_1.OrderService, rda_service_1.RDAService],
     })
 ], OrderModule);
 //# sourceMappingURL=order.module.js.map

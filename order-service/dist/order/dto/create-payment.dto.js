@@ -9,53 +9,54 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateOrderDto = void 0;
+exports.CreatePaymentDTO = void 0;
 const class_transformer_1 = require("class-transformer");
-require("class-validator");
 const class_validator_1 = require("class-validator");
 const validate_if_not_null_decorator_1 = require("../../util/validate-if-not-null.decorator");
-const create_payment_dto_1 = require("./create-payment.dto");
-class CreateOrderDto {
+const money_dto_1 = require("./money.dto");
+class CreatePaymentDTO {
 }
-exports.CreateOrderDto = CreateOrderDto;
+exports.CreatePaymentDTO = CreatePaymentDTO;
 __decorate([
-    (0, class_validator_1.IsMongoId)(),
-    __metadata("design:type", String)
-], CreateOrderDto.prototype, "customer_id", void 0);
+    (0, class_validator_1.IsNumber)(),
+    (0, validate_if_not_null_decorator_1.ValidateIfNotNull)(),
+    __metadata("design:type", Number)
+], CreatePaymentDTO.prototype, "id", void 0);
 __decorate([
-    (0, class_validator_1.IsMongoId)(),
-    __metadata("design:type", String)
-], CreateOrderDto.prototype, "restaurant_id", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)(),
-    __metadata("design:type", String)
-], CreateOrderDto.prototype, "foodId", void 0);
+    (0, class_validator_1.IsNumber)(),
+    __metadata("design:type", Number)
+], CreatePaymentDTO.prototype, "value", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.MinLength)(12),
     __metadata("design:type", String)
-], CreateOrderDto.prototype, "address", void 0);
+], CreatePaymentDTO.prototype, "name", void 0);
 __decorate([
-    (0, class_transformer_1.Type)((_) => create_payment_dto_1.CreatePaymentDTO),
-    __metadata("design:type", create_payment_dto_1.CreatePaymentDTO)
-], CreateOrderDto.prototype, "paymentDetails", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], CreateOrderDto.prototype, "restaurant_name", void 0);
+], CreatePaymentDTO.prototype, "number", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreatePaymentDTO.prototype, "expiration", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateOrderDto.prototype, "username", void 0);
-__decorate([
-    (0, class_validator_1.IsMongoId)(),
-    (0, validate_if_not_null_decorator_1.ValidateIfNotNull)(),
-    __metadata("design:type", String)
-], CreateOrderDto.prototype, "courier_id", void 0);
+], CreatePaymentDTO.prototype, "code", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
-    (0, validate_if_not_null_decorator_1.ValidateIfNotNull)(),
     __metadata("design:type", String)
-], CreateOrderDto.prototype, "courier_name", void 0);
-//# sourceMappingURL=create-order.dto.js.map
+], CreatePaymentDTO.prototype, "status", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", Number)
+], CreatePaymentDTO.prototype, "orderId", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", Number)
+], CreatePaymentDTO.prototype, "paymentMode", void 0);
+__decorate([
+    (0, class_transformer_1.Type)((_) => money_dto_1.MoneyDTO),
+    __metadata("design:type", money_dto_1.MoneyDTO)
+], CreatePaymentDTO.prototype, "money", void 0);
+//# sourceMappingURL=create-payment.dto.js.map

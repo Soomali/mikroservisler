@@ -16,6 +16,25 @@ let RDAService = class RDAService {
     constructor(httpService) {
         this.httpService = httpService;
     }
+    async createPayment(paymentDetails) {
+        var data = { ...paymentDetails };
+        if (paymentDetails.id == null) {
+            data.id = new Date().getTime();
+        }
+        const config = {
+            method: 'POST',
+            url: `http://api-gateway-service:80/auth/verify-code`,
+            data
+        };
+        const response = this.httpService.request(config);
+        try {
+            const result = await this.getFirstValue(response);
+            return result.data;
+        }
+        catch (e) {
+            return false;
+        }
+    }
     async verifyAuthenticationCode(email, verification_code) {
         const config = {
             method: 'POST',

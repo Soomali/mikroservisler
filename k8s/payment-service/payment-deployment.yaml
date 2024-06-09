@@ -1,22 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-app
+  name: payments
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: spring-app
+      app: payments
   template:
     metadata:
       labels:
-        app: spring-app
+        app: payments
     spec:
       containers:
-        - name: spring-app
-          image: your-spring-boot-app:latest
+        - name: payments
+          image: payments-service
+          imagePullPolicy: Never
           ports:
-            - containerPort: 8080
+            - containerPort: 8080 # Port on which the application listens
           env:
             - name: SPRING_DATASOURCE_URL
               value: jdbc:h2:file:/opt/h2-data/mydb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE

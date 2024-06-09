@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: order-service
+  name: payments-service
 spec:
   selector:
-    app: order-service
+    app: payments # Match the app label from the deployment
   ports:
     - protocol: TCP
       port: 3000 # Exposed port on the service

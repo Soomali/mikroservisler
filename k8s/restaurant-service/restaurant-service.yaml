@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: restaurant-service
+spec:
+  selector:
+    app: restaurant-service
+  ports:
+    - protocol: TCP
+      port: 3000 # Exposed port on the service
+      targetPort: 3000 # Port on the pod where the service will forward traffic

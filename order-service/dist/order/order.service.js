@@ -17,9 +17,11 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const order_schema_1 = require("./schema/order.schema");
 const mongoose_2 = require("mongoose");
+const rda_service_1 = require("../rda/rda.service");
 let OrderService = class OrderService {
-    constructor(orderModel) {
+    constructor(orderModel, rdaService) {
         this.orderModel = orderModel;
+        this.rdaService = rdaService;
     }
     create(createOrderDto) {
         return this.orderModel.create(createOrderDto);
@@ -46,6 +48,6 @@ exports.OrderService = OrderService;
 exports.OrderService = OrderService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(order_schema_1.Order.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
+    __metadata("design:paramtypes", [mongoose_2.Model, rda_service_1.RDAService])
 ], OrderService);
 //# sourceMappingURL=order.service.js.map

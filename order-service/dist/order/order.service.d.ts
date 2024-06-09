@@ -27,9 +27,11 @@ import { CreateOrderDto } from "./dto/create-order.dto";
 import { UpdateOrderDto } from "./dto/update-order.dto";
 import { Order, OrderStatus } from "./schema/order.schema";
 import { Model } from "mongoose";
+import { RDAService } from "src/rda/rda.service";
 export declare class OrderService {
     private readonly orderModel;
-    constructor(orderModel: Model<Order>);
+    private readonly rdaService;
+    constructor(orderModel: Model<Order>, rdaService: RDAService);
     create(createOrderDto: CreateOrderDto): Promise<import("mongoose").Document<unknown, {}, Order> & Order & {
         _id: import("mongoose").Types.ObjectId;
     }>;
