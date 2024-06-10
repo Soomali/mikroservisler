@@ -22,6 +22,10 @@ export class ProductsController {
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
+  @Get('restaurant/:id')
+  findRestaurantsProducts(@Param('id') id:string){
+    return this.productsService.findByRestaurantId(id);
+  }
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProductsDto: UpdateProductsDto) {

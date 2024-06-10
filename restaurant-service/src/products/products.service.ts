@@ -22,6 +22,9 @@ export class ProductsService {
   findOne(id: string) {
     return this.productsModel.findById(id);
   }
+  findByRestaurantId(restaurant_id:string){
+    return this.productsModel.find({restaurant_id});
+  }
 
   update(id: string, updateProductsDto: UpdateProductsDto) {
     return this.productsModel.findByIdAndUpdate(id, updateProductsDto);
