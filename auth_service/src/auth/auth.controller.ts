@@ -60,7 +60,7 @@ export class AuthController {
   @Post('login')
   async login(@Body() body: LoginDTO) {
     const loginResponse = await this.authService.login(body);
-    
+    return loginResponse;
   }
 
   @ApiResponse({

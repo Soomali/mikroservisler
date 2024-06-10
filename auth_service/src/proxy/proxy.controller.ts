@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, HttpException, InternalServerErrorException, Patch, Post, Req, Res } from '@nestjs/common';
+import { Controller, Delete, Get, HttpException, InternalServerErrorException, Patch, Post, Put, Req, Res } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
 
 import { Public } from 'src/reflectors/public.reflector';
@@ -31,6 +31,12 @@ export class ProxyController {
   @Public()
   @Patch('*')
   async patchAny(@Req() req:Request) {
+    return await this.forwardRequest(req);
+  }
+
+  @Public()
+  @Put('*')
+  async putAny(@Req() req:Request) {
     return await this.forwardRequest(req);
   }
 
